@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAPIO Performance & Support Report - Jan 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --snapio-bg: #000000;
+            --snapio-card: #111111;
+            --snapio-primary: #C1FF00; /* SNAPIO Signature Lime Green */
+            --snapio-text: #FFFFFF;
+            --snapio-muted: #888888;
+        }
+
+        body {
+            background-color: var(--snapio-bg);
+            color: var(--snapio-text);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .text-snapio { color: var(--snapio-primary); }
+        .bg-snapio { background-color: var(--snapio-primary); }
+        .border-snapio { border-color: var(--snapio-primary); }
+
+        .card {
+            background-color: var(--snapio-card);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .metric-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-top: 8px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--snapio-primary);
+            color: black;
+            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+        .badge-alert { background: #FF3B30; color: white; }
+        .badge-support { background: #7000FF; color: white; }
+        .badge-broadcast { background: #00A3FF; color: white; }
+        .badge-ok { background: #34C759; color: white; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <!-- Brand Header -->
+    <header class="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
+        <div class="flex items-center">
+            <img src="https://raw.githubusercontent.com/BDGOAL/BDGOAL/refs/heads/main/525527512_18102476296562385_7326659163452741809_n.jpg" alt="SNAPIO Logo" class="h-20 w-auto object-contain">
+        </div>
+        
+        <div class="text-right border-l-2 border-snapio pl-6">
+            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-snapio mb-1">Performance & Support Report</h2>
+            <p class="text-xl font-bold italic">DEC 01, 2025 — JAN 07, 2026</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto space-y-8">
+        
+        <!-- KPI Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="card">
+                <span class="text-xs font-bold text-muted uppercase tracking-wider">Total B2B Leads</span>
+                <div class="metric-value text-snapio">36</div>
+                <div class="mt-4 flex items-center gap-2">
+                    <span class="badge badge-alert">Below Target</span>
+                    <span class="text-[10px] text-muted">Daily Goal: 7-10</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="text-xs font-bold text-muted uppercase tracking-wider">Broadcast Outreach</span>
+                <div class="metric-value text-white">3,105</div>
+                <div class="mt-4 flex items-center gap-2">
+                    <span class="badge badge-broadcast">Active</span>
+                    <span class="text-[10px] text-muted">Started Dec 15</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="text-xs font-bold text-muted uppercase tracking-wider">Tech Support Cases</span>
+                <div class="metric-value">31</div>
+                <div class="mt-4">
+                    <span class="badge badge-support">Critical Burden</span>
+                </div>
+            </div>
+            <div class="card border-red-500/50">
+                <span class="text-xs font-bold text-muted uppercase tracking-wider">Avg Support Speed</span>
+                <div class="metric-value text-red-500">18<span class="text-lg ml-1">min</span></div>
+                <div class="mt-4">
+                    <span class="badge badge-alert">Failed SLA</span>
+                    <span class="text-[10px] text-red-500 font-bold block mt-1">SLA Limit: &lt; 5 mins</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Chart -->
+            <div class="card lg:col-span-2">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <h3 class="text-lg font-black uppercase italic">Traffic <span class="text-snapio">Lifecycle</span></h3>
+                        <p class="text-xs text-muted">B2B Leads vs. Technical Maintenance vs. Broadcast Events</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="splitChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Strategy Insight -->
+            <div class="card border-snapio flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-black uppercase italic mb-4">Marketing <span class="text-snapio">Impact</span></h3>
+                    <p class="text-sm text-muted leading-relaxed mb-6">
+                        Broadcast activity launched on <span class="text-white font-bold">Dec 15</span> has reached 3,105 contacts. 
+                        While total inquiries haven't hit the 7-10 target yet, the <span class="text-white font-bold">read rate</span> indicates a significant audience is now re-engaged for Q1.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-4 bg-white/5 rounded-lg border border-white/10">
+                        <p class="text-[10px] font-black uppercase text-snapio mb-1">Next Phase</p>
+                        <p class="text-xs italic">Focus on improving broadcast "Read-to-Reply" ratio to drive higher inquiry volume.</p>
+                    </div>
+                    <button class="btn-primary w-full">Optimize Broadcast Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card">
+                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-snapio">B2B Acquisition Analysis</h4>
+                <div class="space-y-4 text-sm text-muted">
+                    <p>• <span class="text-white font-bold">Volume Tracking:</span> 36 inquiries for Dec/Jan. Despite heavy broadcasting, daily organic inquiries remain at ~1.6/day.</p>
+                    <p>• <span class="text-white font-bold">Lead Identification:</span> 28 new CRM contacts added. Outreach is reaching valid business accounts.</p>
+                    <p>• <span class="text-white font-bold">Inquiry Gaps:</span> Notable zero-inquiry periods on Dec 13-14 and Dec 19-21 highlight the weekend/holiday B2B lull.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-red-500">SLA Critical Alert</h4>
+                <div class="space-y-4 text-sm text-muted">
+                    <p>• <span class="text-red-500 font-bold">SLA Breach:</span> Current response time (18 min) is 260% over the 5-min threshold.</p>
+                    <p>• <span class="text-white font-bold">Hardware Fatigue:</span> Dec 13/15 support spikes (9 cases) coincided with the highest message volume (139 messages).</p>
+                    <p>• <span class="text-white font-bold">Operational Risk:</span> Slow response to hardware failures during live event rentals poses a threat to long-term contract renewals.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto mt-24 pb-12 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50">
+        <div class="flex items-center grayscale opacity-80">
+            <img src="https://raw.githubusercontent.com/BDGOAL/BDGOAL/refs/heads/main/525527512_18102476296562385_7326659163452741809_n.jpg" alt="SNAPIO" class="h-10">
+            <span class="ml-2 font-black italic text-xs">SNAPIO PERFORMANCE AUDIT</span>
+        </div>
+        <p class="text-[10px] font-bold uppercase tracking-widest mt-4 md:mt-0 text-red-500">SLA VIOLATION DETECTED // CONFIDENTIAL</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('splitChart').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['01', '03', '05', '07', '09', '11', '13', '15', '17', '19', '21'],
+                datasets: [
+                    {
+                        label: 'B2B Leads',
+                        data: [4, 2, 3, 0, 1, 3, 0, 3, 3, 0, 0],
+                        backgroundColor: '#C1FF00',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Support Tickets',
+                        data: [0, 3, 2, 1, 1, 1, 4, 4, 2, 1, 0],
+                        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                        borderColor: 'rgba(255, 255, 255, 0.3)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Broadcast Event',
+                        type: 'line',
+                        data: [0, 0, 0, 0, 0, 0, 0, 8, 4, 4, 4], // Scaled for visualization
+                        borderColor: '#00A3FF',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            color: '#888',
+                            font: { size: 10, weight: 'bold' },
+                            usePointStyle: true
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 12,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#444' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#444' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
