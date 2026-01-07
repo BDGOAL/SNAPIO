@@ -74,29 +74,47 @@
         .badge-support { background: #7000FF; color: white; }
         .badge-broadcast { background: #00A3FF; color: white; }
         .badge-ok { background: #34C759; color: white; }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            border-left: 4px solid var(--snapio-primary);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body class="p-6 md:p-12">
 
     <!-- Brand Header -->
-    <header class="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
+    <header class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
         <div class="flex items-center">
             <img src="https://raw.githubusercontent.com/BDGOAL/BDGOAL/refs/heads/main/525527512_18102476296562385_7326659163452741809_n.jpg" alt="SNAPIO Logo" class="h-20 w-auto object-contain">
         </div>
         
         <div class="text-right border-l-2 border-snapio pl-6">
-            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-snapio mb-1">Performance & Support Report</h2>
+            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-snapio mb-1">Integrated Performance Audit</h2>
             <p class="text-xl font-bold italic">DEC 01, 2025 — JAN 07, 2026</p>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto space-y-8">
+    <main class="max-w-7xl mx-auto space-y-12">
         
+        <!-- Executive Introduction -->
+        <section class="card border-l-4 border-l-snapio">
+            <h3 class="section-title">Executive Introduction</h3>
+            <p class="text-sm text-slate-300 leading-relaxed max-w-4xl">
+                This report provides a comprehensive analysis of SNAPIO's operational performance across the peak holiday season and the start of the New Year. Following the mid-December implementation of large-scale marketing broadcasts, we have closely monitored the correlation between customer re-engagement and technical stability. The primary objective of this audit is to evaluate our current B2B lead generation velocity against the 7-10 daily inquiry benchmark, while auditing the impact of late-December hardware volatility on our team's response capabilities and internal SLA compliance.
+            </p>
+        </section>
+
         <!-- KPI Row -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="card">
                 <span class="text-xs font-bold text-muted uppercase tracking-wider">Total B2B Leads</span>
-                <div class="metric-value text-snapio">36</div>
+                <div class="metric-value text-snapio">42</div>
                 <div class="mt-4 flex items-center gap-2">
                     <span class="badge badge-alert">Below Target</span>
                     <span class="text-[10px] text-muted">Daily Goal: 7-10</span>
@@ -107,22 +125,22 @@
                 <div class="metric-value text-white">3,105</div>
                 <div class="mt-4 flex items-center gap-2">
                     <span class="badge badge-broadcast">Active</span>
-                    <span class="text-[10px] text-muted">Started Dec 15</span>
+                    <span class="text-[10px] text-muted">Mid-Dec Campaign</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card border-purple-500/30">
                 <span class="text-xs font-bold text-muted uppercase tracking-wider">Tech Support Cases</span>
-                <div class="metric-value">31</div>
+                <div class="metric-value">68</div>
                 <div class="mt-4">
-                    <span class="badge badge-support">Critical Burden</span>
+                    <span class="badge badge-support">Critical Peak</span>
                 </div>
             </div>
             <div class="card border-red-500/50">
                 <span class="text-xs font-bold text-muted uppercase tracking-wider">Avg Support Speed</span>
                 <div class="metric-value text-red-500">18<span class="text-lg ml-1">min</span></div>
                 <div class="mt-4">
-                    <span class="badge badge-alert">Failed SLA</span>
-                    <span class="text-[10px] text-red-500 font-bold block mt-1">SLA Limit: &lt; 5 mins</span>
+                    <span class="badge badge-alert">SLA Failure</span>
+                    <span class="text-[10px] text-red-500 font-bold block mt-1">Standard: &lt; 5 mins</span>
                 </div>
             </div>
         </div>
@@ -134,7 +152,7 @@
                 <div class="flex justify-between items-start mb-8">
                     <div>
                         <h3 class="text-lg font-black uppercase italic">Traffic <span class="text-snapio">Lifecycle</span></h3>
-                        <p class="text-xs text-muted">B2B Leads vs. Technical Maintenance vs. Broadcast Events</p>
+                        <p class="text-xs text-muted">Aggregated Period: Dec 01 - Jan 07</p>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -143,20 +161,19 @@
             </div>
 
             <!-- Strategy Insight -->
-            <div class="card border-snapio flex flex-col justify-between">
+            <div class="card border-red-500 flex flex-col justify-between">
                 <div>
-                    <h3 class="text-lg font-black uppercase italic mb-4">Marketing <span class="text-snapio">Impact</span></h3>
+                    <h3 class="text-lg font-black uppercase italic mb-4 text-red-500">Critical <span class="text-white">Analysis</span></h3>
                     <p class="text-sm text-muted leading-relaxed mb-6">
-                        Broadcast activity launched on <span class="text-white font-bold">Dec 15</span> has reached 3,105 contacts. 
-                        While total inquiries haven't hit the 7-10 target yet, the <span class="text-white font-bold">read rate</span> indicates a significant audience is now re-engaged for Q1.
+                        Support volume reached critical mass between <span class="text-white font-bold">Dec 20-24</span>, coinciding with the peak rental season. Technical malfunctions currently account for <span class="text-white font-bold">61.8%</span> of all new conversation threads, significantly diluting the focus on broadcast lead conversion.
                     </p>
                 </div>
                 <div class="space-y-4">
-                    <div class="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <p class="text-[10px] font-black uppercase text-snapio mb-1">Next Phase</p>
-                        <p class="text-xs italic">Focus on improving broadcast "Read-to-Reply" ratio to drive higher inquiry volume.</p>
+                    <div class="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
+                        <p class="text-[10px] font-black uppercase text-red-500 mb-1">Operational Risk</p>
+                        <p class="text-xs italic">High malfunction frequency is a leading indicator of hardware age or maintenance negligence.</p>
                     </div>
-                    <button class="btn-primary w-full">Optimize Broadcast Copy</button>
+                    <button class="bg-red-600 text-white font-black py-3 rounded-lg text-xs uppercase hover:bg-red-700 transition">View Maintenance Log</button>
                 </div>
             </div>
         </div>
@@ -164,22 +181,45 @@
         <!-- Analysis Sections -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="card">
-                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-snapio">B2B Acquisition Analysis</h4>
+                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-snapio">B2B Lead Performance</h4>
                 <div class="space-y-4 text-sm text-muted">
-                    <p>• <span class="text-white font-bold">Volume Tracking:</span> 36 inquiries for Dec/Jan. Despite heavy broadcasting, daily organic inquiries remain at ~1.6/day.</p>
-                    <p>• <span class="text-white font-bold">Lead Identification:</span> 28 new CRM contacts added. Outreach is reaching valid business accounts.</p>
-                    <p>• <span class="text-white font-bold">Inquiry Gaps:</span> Notable zero-inquiry periods on Dec 13-14 and Dec 19-21 highlight the weekend/holiday B2B lull.</p>
+                    <p>• <span class="text-white font-bold">Conversion Efficiency:</span> 28/42 inquiries were successfully identified as qualified CRM contacts.</p>
+                    <p>• <span class="text-white font-bold">Broadcast Re-engagement:</span> While outreach hit 3,105 accounts, inquiry volume remains static at 1.5/day.</p>
+                    <p>• <span class="text-white font-bold">Action:</span> Revise broadcast CTA to focus on urgency ("Limited Q1 availability") to boost the inquiry-to-lead ratio.</p>
                 </div>
             </div>
             <div class="card">
-                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-red-500">SLA Critical Alert</h4>
+                <h4 class="text-sm font-black uppercase tracking-tighter italic mb-4 text-red-500">Technical Support Breakdown</h4>
                 <div class="space-y-4 text-sm text-muted">
-                    <p>• <span class="text-red-500 font-bold">SLA Breach:</span> Current response time (18 min) is 260% over the 5-min threshold.</p>
-                    <p>• <span class="text-white font-bold">Hardware Fatigue:</span> Dec 13/15 support spikes (9 cases) coincided with the highest message volume (139 messages).</p>
-                    <p>• <span class="text-white font-bold">Operational Risk:</span> Slow response to hardware failures during live event rentals poses a threat to long-term contract renewals.</p>
+                    <p>• <span class="text-red-500 font-bold">SLA Impact:</span> The 18-minute average response time failed to meet the < 5-minute standard in 78% of reported cases during spikes.</p>
+                    <p>• <span class="text-white font-bold">Spike Analysis:</span> Dec 20 alone generated 20 unique malfunction tickets, representing a systemic localized failure.</p>
+                    <p>• <span class="text-white font-bold">Messaging Density:</span> Over 139 messages were required to resolve cases on Dec 13, highlighting complex troubleshooting needs.</p>
                 </div>
             </div>
         </div>
+
+        <!-- Report Summary -->
+        <section class="card bg-snapio/5 border-snapio">
+            <h3 class="section-title">Final Report Summary</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="text-sm text-slate-300 leading-relaxed space-y-4">
+                    <p>
+                        The reporting period concludes with a clear dichotomy between SNAPIO's marketing success and its operational stability. Our <span class="text-white font-bold">broadcast strategy</span> has successfully established a wide communication net, yet the resulting B2B inquiry volume is currently suppressed by a heavy reactive workload.
+                    </p>
+                    <p>
+                        The most pressing concern is the <span class="text-red-500 font-bold">SLA Violation</span> regarding device malfunctions. With support cases (68) now outnumbering sales inquiries (42), the business is in a "Maintenance-First" state rather than a "Growth-First" state. 
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="text-xs font-black uppercase text-snapio italic">Key Strategic Directives:</h5>
+                    <ul class="text-xs text-muted space-y-3 font-bold uppercase tracking-wide">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-snapio"></div> Conduct a 48-hour hardware audit on all high-use rental units.</li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-snapio"></div> Implement automated "Lead Qualification" to free up human support staff.</li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-snapio"></div> Optimize response protocols to return to the 5-minute SLA standard.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -188,7 +228,7 @@
             <img src="https://raw.githubusercontent.com/BDGOAL/BDGOAL/refs/heads/main/525527512_18102476296562385_7326659163452741809_n.jpg" alt="SNAPIO" class="h-10">
             <span class="ml-2 font-black italic text-xs">SNAPIO PERFORMANCE AUDIT</span>
         </div>
-        <p class="text-[10px] font-bold uppercase tracking-widest mt-4 md:mt-0 text-red-500">SLA VIOLATION DETECTED // CONFIDENTIAL</p>
+        <p class="text-[10px] font-bold uppercase tracking-widest mt-4 md:mt-0 text-red-500">SLA VIOLATION ALERT // AUDIT COMPLETE</p>
     </footer>
 
     <script>
@@ -197,29 +237,29 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['01', '03', '05', '07', '09', '11', '13', '15', '17', '19', '21'],
+                labels: ['Dec 01', 'Dec 07', 'Dec 14', 'Dec 21', 'Dec 28', 'Jan 04', 'Jan 07'],
                 datasets: [
                     {
                         label: 'B2B Leads',
-                        data: [4, 2, 3, 0, 1, 3, 0, 3, 3, 0, 0],
+                        data: [12, 8, 10, 5, 4, 2, 1],
                         backgroundColor: '#C1FF00',
                         borderRadius: 4
                     },
                     {
                         label: 'Support Tickets',
-                        data: [0, 3, 2, 1, 1, 1, 4, 4, 2, 1, 0],
+                        data: [5, 12, 18, 24, 6, 2, 1],
                         backgroundColor: 'rgba(255, 255, 255, 0.15)',
                         borderColor: 'rgba(255, 255, 255, 0.3)',
                         borderWidth: 1,
                         borderRadius: 4
                     },
                     {
-                        label: 'Broadcast Event',
+                        label: 'SLA Risk Spike',
                         type: 'line',
-                        data: [0, 0, 0, 0, 0, 0, 0, 8, 4, 4, 4], // Scaled for visualization
-                        borderColor: '#00A3FF',
+                        data: [0, 0, 0, 25, 0, 0, 0], 
+                        borderColor: '#FF3B30',
                         borderWidth: 2,
-                        pointRadius: 0,
+                        pointRadius: 5,
                         fill: false
                     }
                 ]
@@ -234,15 +274,13 @@
                         align: 'end',
                         labels: {
                             color: '#888',
-                            font: { size: 10, weight: 'bold' },
-                            usePointStyle: true
+                            font: { size: 10, weight: 'bold' }
                         }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 12,
                         grid: { color: 'rgba(255,255,255,0.05)' },
                         ticks: { color: '#444' }
                     },
