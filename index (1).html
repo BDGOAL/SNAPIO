@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Conversation Operations Report | Apr–Sep 2026</title>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#f6f8fc;--card:#ffffff;--ink:#172033;--muted:#667085;--line:#e6eaf0;
+    --blue:#2f6fed;--blue2:#7ca3ff;--teal:#128a8a;--green:#157a4a;--amber:#4361a8;
+    --red:#4361a8;--navy:#183153;--shadow:0 14px 36px rgba(24,49,83,.08)
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;background:var(--bg)}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 20px 70px}
+  .hero{background:linear-gradient(135deg,#17315b 0%,#2459b8 64%,#157f8c 100%);color:#fff;border-radius:24px;padding:42px;box-shadow:var(--shadow)}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.8}
+  h1{font-size:clamp(30px,4vw,46px);line-height:1.12;margin:10px 0 14px;max-width:900px}
+  .hero p{margin:0;max-width:850px;color:#edf3ff;font-size:16px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .chip{padding:7px 11px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.10);border-radius:999px;font-size:12px}
+  .topbar{position:sticky;top:0;z-index:20;margin:16px 0 26px;padding:8px 0;background:rgba(246,248,252,.94);backdrop-filter:blur(10px)}
+  .nav{display:flex;align-items:center;gap:6px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:7px;box-shadow:0 8px 24px rgba(24,49,83,.05)}
+  .nav a{text-decoration:none;color:var(--muted);font-weight:700;font-size:12px;padding:8px 10px;border-radius:8px;white-space:nowrap}
+  .nav a:hover{background:#eef4ff;color:var(--blue)}
+  .print{margin-left:auto;border:0;background:var(--navy);color:#fff;font-weight:800;padding:9px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
+  section{margin-top:32px}
+  .section-title{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:14px}
+  .kicker{font-size:12px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.10em}
+  h2{font-size:25px;line-height:1.2;margin:3px 0 0}
+  .note{font-size:12px;color:var(--muted)}
+  .summary{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow)}
+  .summary ul{margin:0;padding-left:20px;display:grid;gap:9px}
+  .summary strong{color:var(--navy)}
+  .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow)}
+  .kpi-label{font-size:12px;color:var(--muted);font-weight:800}
+  .kpi-value{font-size:30px;font-weight:850;letter-spacing:-.03em;margin:4px 0}
+  .kpi-foot{font-size:12px;color:var(--muted)}
+  .good{color:var(--green);font-weight:800}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .chart{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);overflow:hidden}
+  .chart h3{margin:0 0 2px;font-size:17px}
+  .chart p{margin:0 0 14px;color:var(--muted);font-size:12px}
+  svg{width:100%;height:auto;display:block}
+  .gridline{stroke:#e9edf4;stroke-width:1}
+  .bar{fill:#2f6fed}
+  .line{fill:none;stroke:#128a8a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+  .dot{fill:#fff;stroke:#128a8a;stroke-width:4}
+  .svg-axis{font-size:11px;fill:#667085}
+  .svg-value{font-size:11px;fill:#344054;font-weight:800}
+  .insight{margin-top:12px;padding:13px 15px;background:#eef4ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;font-size:13px}
+  .mix-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+  .mixbar{height:44px;border-radius:12px;overflow:hidden;display:flex;background:#eef2f7;margin-top:18px}
+  .mixbar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900;min-width:0}
+  .human{background:#6b7280;width:13.1%} .automation{background:#168d8d;width:14.1%} .hybrid{background:#2f6fed;width:72.8%}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:11px;color:var(--muted);font-size:12px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+  .alert{display:grid;grid-template-columns:44px 1fr;gap:14px;background:#f4f7ff;border:1px solid #d8e2f5;border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+  .alert-icon{width:44px;height:44px;border-radius:12px;background:#e8efff;color:#2f5fa7;font-weight:900;display:grid;place-items:center;font-size:22px}
+  .alert h3{margin:0 0 6px;color:#27466f;font-size:17px}
+  .alert p{margin:0;color:#53657c;font-size:13px}
+  .table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:930px}
+  th,td{padding:12px 13px;border-bottom:1px solid #edf0f5;text-align:right;font-size:12px}
+  th{background:#f8fafc;color:#475467;font-weight:850;position:sticky;top:0}
+  th:first-child,td:first-child{text-align:left;font-weight:800}
+  tr:last-child td{border-bottom:0}
+  .actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .action-num{width:32px;height:32px;border-radius:10px;background:#eef4ff;color:var(--blue);display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+  .action h3{font-size:16px;margin:0 0 5px}
+  .action p{font-size:13px;color:var(--muted);margin:0}
+  .foot{margin-top:28px;color:var(--muted);font-size:11px;padding-top:16px;border-top:1px solid var(--line)}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.mix-wrap{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.hero{padding:30px}}
+  @media(max-width:560px){.wrap{padding:14px 12px 48px}.hero{padding:24px 20px;border-radius:18px}.kpis{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column;gap:4px}.print{display:none}}
+  @media print{.topbar,.print{display:none!important}body{background:#fff}.wrap{max-width:none;padding:0}.hero,.card,.chart,.summary,.alert,.table-wrap{box-shadow:none}.hero{border-radius:0}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Conversation Operations Report</div>
+    <h1>Conversation activity evolved through Q3 while response performance remained consistently high</h1>
+    <p>整合 6 份 daily conversation reports，涵蓋 2026/04/09–2026/09/30。報告聚焦對話活動、回應率、服務模式，以及 working-hours 欄位的使用說明。</p>
+    <div class="chips">
+      <span class="chip">175 days</span><span class="chip">1,285 active conversations</span><span class="chip">96.9% overall response rate</span><span class="chip">72.8% hybrid share</span>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="nav">
+      <a href="#summary">摘要</a><a href="#volume">對話量</a><a href="#response">回應率</a><a href="#mix">服務模式</a><a href="#quality">資料說明</a><a href="#monthly">月度明細</a><a href="#actions">後續建議</a>
+      <button class="print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </div>
+
+  <section id="summary">
+    <div class="section-title"><div><div class="kicker">Executive Summary</div><h2>管理層摘要</h2></div><div class="note">April 為部分月份（4/9 起）</div></div>
+    <div class="summary">
+      <ul>
+        <li>全期錄得 <strong>1,285 宗 active conversations</strong>。以完整月份比較，平均每日 active conversations 由 5 月的 <strong>8.9</strong> 調整至 9 月的 <strong>4.6</strong>；9 月的日均量相當於 5 月的 <strong>51.1%</strong>。</li>
+        <li>整體 response rate 為 <strong>96.9%</strong>（1,116 responded / 36 unresponded）；9 月為 <strong>97.5%</strong>，顯示各月份的回應表現整體維持在高水平。</li>
+        <li>服務模式以 <strong>Hybrid 為主（72.8%）</strong>；Human-only 13.1%、Automation-only 14.1%，AI-agent-only 為 0。</li>
+        <li>Working-hours 欄位由 <strong>2026/05/12–2026/09/30</strong> 顯示 781 宗 active conversations 均被分類為 Outside working hours，而同期 Within working hours 為 0。建議在使用此欄位作服務時段分析前，先確認 business hours、timezone 與 reporting definition。</li>
+      </ul>
+    </div>
+    <div class="kpis">
+      <div class="card"><div class="kpi-label">Active conversations</div><div class="kpi-value">1,285</div><div class="kpi-foot">175 日合計</div></div>
+      <div class="card"><div class="kpi-label">Overall response rate</div><div class="kpi-value">96.9%</div><div class="kpi-foot">1,116 responded / 36 unresponded</div></div>
+      <div class="card"><div class="kpi-label">Hybrid share</div><div class="kpi-value">72.8%</div><div class="kpi-foot">813 / 1,116 classified service-mode records</div></div>
+      <div class="card"><div class="kpi-label">Sep avg/day vs May</div><div class="kpi-value">51.1%</div><div class="kpi-foot"><span class="good">4.6 vs 8.9 conversations/day</span></div></div>
+    </div>
+  </section>
+
+  <section id="volume">
+    <div class="section-title"><div><div class="kicker">Conversation activity</div><h2>對話活動在 5 月後逐步進入相對穩定區間</h2></div><div class="note">April 為 4/9–4/30 partial period</div></div>
+    <div class="grid2">
+      <div class="chart">
+        <h3>Monthly active conversations</h3><p>月度 active conversations；April 覆蓋 4/9–4/30，與完整月份比較時需留意期間差異。</p>
+        <svg viewBox="0 0 760 260" role="img" aria-label="Monthly active conversations bar chart">
+          <line x1="55" y1="215" x2="740" y2="215" class="gridline"/>
+          <line x1="55" y1="119" x2="740" y2="119" class="gridline"/>
+          <line x1="55" y1="22" x2="740" y2="22" class="gridline"/>
+          <text x="48" y="219" text-anchor="end" class="svg-axis">0</text><text x="48" y="123" text-anchor="end" class="svg-axis">180</text><text x="48" y="26" text-anchor="end" class="svg-axis">360</text>
+          <rect x="79.0" y="22.0" width="86.2" height="193.0" rx="8" class="bar"/><text x="122.1" y="14.0" text-anchor="middle" class="svg-value">359</text><text x="122.1" y="243" text-anchor="middle" class="svg-axis">Apr*</text><rect x="189.2" y="66.1" width="86.2" height="148.9" rx="8" class="bar"/><text x="232.3" y="58.1" text-anchor="middle" class="svg-value">277</text><text x="232.3" y="243" text-anchor="middle" class="svg-axis">May</text><rect x="299.3" y="129.5" width="86.2" height="85.5" rx="8" class="bar"/><text x="342.4" y="121.5" text-anchor="middle" class="svg-value">159</text><text x="342.4" y="243" text-anchor="middle" class="svg-axis">Jun</text><rect x="409.5" y="113.4" width="86.2" height="101.6" rx="8" class="bar"/><text x="452.6" y="105.4" text-anchor="middle" class="svg-value">189</text><text x="452.6" y="243" text-anchor="middle" class="svg-axis">Jul</text><rect x="519.7" y="126.8" width="86.2" height="88.2" rx="8" class="bar"/><text x="562.8" y="118.8" text-anchor="middle" class="svg-value">164</text><text x="562.8" y="243" text-anchor="middle" class="svg-axis">Aug</text><rect x="629.8" y="141.3" width="86.2" height="73.7" rx="8" class="bar"/><text x="672.9" y="133.3" text-anchor="middle" class="svg-value">137</text><text x="672.9" y="243" text-anchor="middle" class="svg-axis">Sep</text>
+        </svg>
+        <div class="insight">5 月至 9 月：active conversations 由 277 調整至 137；按日平均由 8.9 至 4.6。7 月曾回升至 189 宗，其後維持相對平穩。</div>
+      </div>
+      <div class="chart">
+        <h3>Inbound vs outbound</h3><p>全期對話主要由 inbound 驅動。</p>
+        <div style="display:grid;gap:15px;margin-top:20px">
+          <div><div style="display:flex;justify-content:space-between;font-size:12px"><b>Inbound</b><span>1,043 · 81.2%</span></div><div style="height:16px;background:#edf2f7;border-radius:999px;overflow:hidden;margin-top:6px"><div style="width:81.2%;height:100%;background:#2f6fed"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:12px"><b>Outbound</b><span>242 · 18.8%</span></div><div style="height:16px;background:#edf2f7;border-radius:999px;overflow:hidden;margin-top:6px"><div style="width:18.8%;height:100%;background:#7ca3ff"></div></div></div>
+        </div>
+        <div class="insight">如需進一步理解活動量變化，可按 inbound source、入口、campaign/referral 及 customer segment 作拆解，以補充總量趨勢。</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="response">
+    <div class="section-title"><div><div class="kicker">Service quality</div><h2>回應率維持在約 95–99%</h2></div><div class="note">Responded ÷ (Responded + Unresponded)</div></div>
+    <div class="chart">
+      <h3>Monthly response rate</h3><p>各月份回應率均維持在約 95%–99% 區間。</p>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Monthly response rate line chart">
+        <line x1="55" y1="215" x2="740" y2="215" class="gridline"/><line x1="55" y1="119" x2="740" y2="119" class="gridline"/><line x1="55" y1="22" x2="740" y2="22" class="gridline"/>
+        <text x="48" y="219" text-anchor="end" class="svg-axis">94%</text><text x="48" y="123" text-anchor="end" class="svg-axis">97%</text><text x="48" y="26" text-anchor="end" class="svg-axis">100%</text>
+        <polyline points="55.0,125.2 192.0,61.9 329.0,162.9 466.0,180.8 603.0,132.2 740.0,101.1" class="line"/><circle cx="55.0" cy="125.2" r="6" class="dot"/><text x="55.0" y="113.2" text-anchor="middle" class="svg-value">96.8%</text><text x="55.0" y="243" text-anchor="middle" class="svg-axis">Apr*</text><circle cx="192.0" cy="61.9" r="6" class="dot"/><text x="192.0" y="49.9" text-anchor="middle" class="svg-value">98.8%</text><text x="192.0" y="243" text-anchor="middle" class="svg-axis">May</text><circle cx="329.0" cy="162.9" r="6" class="dot"/><text x="329.0" y="150.9" text-anchor="middle" class="svg-value">95.6%</text><text x="329.0" y="243" text-anchor="middle" class="svg-axis">Jun</text><circle cx="466.0" cy="180.8" r="6" class="dot"/><text x="466.0" y="168.8" text-anchor="middle" class="svg-value">95.1%</text><text x="466.0" y="243" text-anchor="middle" class="svg-axis">Jul</text><circle cx="603.0" cy="132.2" r="6" class="dot"/><text x="603.0" y="120.2" text-anchor="middle" class="svg-value">96.6%</text><text x="603.0" y="243" text-anchor="middle" class="svg-axis">Aug</text><circle cx="740.0" cy="101.1" r="6" class="dot"/><text x="740.0" y="89.1" text-anchor="middle" class="svg-value">97.5%</text><text x="740.0" y="243" text-anchor="middle" class="svg-axis">Sep</text>
+      </svg>
+      <div class="insight">6–7 月回應率為 95.6% / 95.1%；8–9 月為 96.6% / 97.5%，整體維持穩定高水平。</div>
+    </div>
+  </section>
+
+  <section id="mix">
+    <div class="section-title"><div><div class="kicker">Operating model</div><h2>Hybrid 是主要服務模式</h2></div><div class="note">Service-mode classified records = 1,116</div></div>
+    <div class="mix-wrap">
+      <div class="chart">
+        <h3>Service mode mix</h3><p>以 Human / Automation / Hybrid / AI-agent-only 四種分類合計為分母。</p>
+        <div class="mixbar"><span class="human">13.1%</span><span class="automation">14.1%</span><span class="hybrid">72.8%</span></div>
+        <div class="legend"><span><i style="background:#6b7280"></i>Human only · 146</span><span><i style="background:#168d8d"></i>Automation only · 157</span><span><i style="background:#2f6fed"></i>Hybrid · 813</span></div>
+        <div class="insight">AI-agent-only 全期為 0。若未來希望進一步評估 AI handling，可將 routing、feature configuration 及 reporting taxonomy 納入後續檢視。</div>
+      </div>
+      <div class="card">
+        <div class="kpi-label">Operational interpretation</div>
+        <div style="font-size:19px;font-weight:850;margin:8px 0 10px">自動化目前主要透過 Hybrid 模式與人工協作</div>
+        <p style="font-size:13px;color:var(--muted);margin:0">Hybrid 為目前最主要的服務模式，顯示 automation 主要與 human handling 配合使用。後續可進一步按 conversation type 檢視 Hybrid 與 Automation-only 的分佈，以了解不同場景的運作模式。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quality">
+    <div class="section-title"><div><div class="kicker">Data note</div><h2>Working-hours 欄位建議先確認設定後再作時段分析</h2></div></div>
+    <div class="alert">
+      <div class="alert-icon">i</div>
+      <div><h3>Working-hours 分類需配合設定背景解讀</h3><p>2026/05/12–2026/09/30 共 142 日、781 宗 active conversations 均被分類為 Outside working hours，同期 Within working hours 為 0。由於此結果可能受 business hours、workspace timezone 或 report definition 影響，建議先確認相關設定，再使用此欄位分析 staffing、coverage 或 after-hours demand。</p></div>
+    </div>
+  </section>
+
+  <section id="monthly">
+    <div class="section-title"><div><div class="kicker">Monthly detail</div><h2>月度明細</h2></div><div class="note">* Apr = 4/9–4/30</div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Month</th><th>Active</th><th>Avg/day</th><th>Inbound</th><th>Outbound</th><th>Response rate</th><th>Human</th><th>Automation</th><th>Hybrid</th></tr></thead>
+      <tbody><tr><td>Apr*</td><td>359</td><td>16.3</td><td>316</td><td>43</td><td>96.8%</td><td>48</td><td>45</td><td>239</td></tr>
+<tr><td>May</td><td>277</td><td>8.9</td><td>218</td><td>59</td><td>98.8%</td><td>30</td><td>30</td><td>179</td></tr>
+<tr><td>Jun</td><td>159</td><td>5.3</td><td>115</td><td>44</td><td>95.6%</td><td>21</td><td>19</td><td>91</td></tr>
+<tr><td>Jul</td><td>189</td><td>6.1</td><td>151</td><td>38</td><td>95.1%</td><td>14</td><td>26</td><td>114</td></tr>
+<tr><td>Aug</td><td>164</td><td>5.3</td><td>136</td><td>28</td><td>96.6%</td><td>11</td><td>22</td><td>108</td></tr>
+<tr><td>Sep</td><td>137</td><td>4.6</td><td>107</td><td>30</td><td>97.5%</td><td>22</td><td>15</td><td>82</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section id="actions">
+    <div class="section-title"><div><div class="kicker">Recommended next steps</div><h2>後續建議</h2></div></div>
+    <div class="actions">
+      <div class="card action"><div class="action-num">1</div><h3>確認 working-hours 設定</h3><p>核對 business hours、workspace timezone、report definition，以及 2026/05/12 前後是否有設定更新；確認後即可更準確地建立 in-hours / after-hours KPI。</p></div>
+      <div class="card action"><div class="action-num">2</div><h3>補充 5→9 月活動量拆解</h3><p>按 inbound source、入口、customer segment、topic / tag 及 campaign 拆解，有助更完整理解不同來源對月度活動量變化的貢獻。</p></div>
+      <div class="card action"><div class="action-num">3</div><h3>檢視 AI routing 與 automation 分佈</h3><p>如 AI handling 屬後續關注方向，可確認 AI-agent-only 為 0 與現行 routing / feature setup 的關係，並由高頻 Hybrid conversation 了解可延伸的 automation 場景。</p></div>
+    </div>
+  </section>
+
+  <div class="foot">Source: 6 uploaded CSV conversation reports. Coverage: 2026-04-09 to 2026-09-30. Generated as a dependency-free static HTML report for GitHub Pages.</div>
+</div>
+</body>
+</html>
